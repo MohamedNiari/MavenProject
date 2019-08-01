@@ -124,6 +124,28 @@
 					</archive>
 				</configuration>
 			</plugin>
+
+			<!-- Assemblage -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/archive-deploy.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-archive-deploy</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<!-- ===== Génération de la Javadoc ===== -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -138,5 +160,13 @@
 				</executions>
 			</plugin>
 		</plugins>
+		
+		<!-- ===== Filtrage du fichier info.properties ===== -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>
