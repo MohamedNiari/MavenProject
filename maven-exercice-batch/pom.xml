@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- =============================================================== -->
+	<!-- Informations du projet -->
+	<!-- =============================================================== -->
+	<!-- ===== Projet Parent Maven ===== -->
+	<parent>
+		<groupId>org.tp.maven</groupId>
+		<artifactId>mavenExercice</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<!-- ===== Informations Maven ===== -->
+	<artifactId>maven-exercice-batch</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<!-- ===== Informations générales ===== -->
+	<name>Exercice Jeu de batchs</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- =============================================================== -->
+	<!-- Dépendances -->
+	<!-- =============================================================== -->
+	<dependencies>
+		<!-- ===== Modules ===== -->
+		<dependency>
+			<groupId>org.tp.maven</groupId>
+			<artifactId>maven-exercice-model</artifactId>
+		</dependency>
+
+		<!-- ===== Bibliothèques tierces ===== -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.bval</groupId>
+			<artifactId>bval-jsr</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!-- =============================================================== -->
+	<!-- Profils -->
+	<!-- =============================================================== -->
+
+	<profiles>
+
+		<profile>
+			<id>with-sources</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.0.2</version>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>3.0.2</version>
+						<executions>
+							<execution>
+								<id>default-jar</id>
+								<phase>none</phase>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+	<!-- =============================================================== -->
+	<!-- Build -->
+	<!-- =============================================================== -->
+	<build>
+		<plugins>
+			<!-- Création du JAR -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.maven.exercice.batch.App</mainClass>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix></classpathPrefix>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- ===== Génération de la Javadoc ===== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
